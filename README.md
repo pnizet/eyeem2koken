@@ -33,9 +33,9 @@ Setup
 	   * `$img_dir = 'YOUR_PATH/img/';    //YOU HAVE TO CREATE A img DIRECTORY  `
 * Configure your cron
  * launch the following command `vi /etc/crontab`
- * insert the line at the begining : `0  10   *   *   *   root    cd [YOUR_PATH]/eyeem2koken; php -f eyeem2koken.php   `
+ * insert the line at the begining : `5  *   *   *   *   root    cd [YOUR_PATH]/eyeem2koken; php -f eyeem2koken.php   `
   
-Once it's done the script will execute every day at 10h00 to check if there is a new picture on your eyeem account and will upload it to your koken install.
+Once it's done the script will execute every 5 minutes to check if there is a new picture on your eyeem account and will upload it to your koken install.
 
 
 Disclaimer
