@@ -154,7 +154,7 @@ curl_setopt($curl, CURLOPT_SAFE_UPLOAD, false);
 curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($curl, CURLOPT_TIMEOUT, 100);
 curl_setopt($curl, CURLOPT_POST, true);
-curl_setopt($curl, CURLOPT_HTTPHEADER, array('X-Koken-Token: d6e721dd70adea71317c38c95fbd5c56'));
+curl_setopt($curl, CURLOPT_HTTPHEADER, array('X-Koken-Token: $koken_token'));
 curl_setopt($curl, CURLOPT_POSTFIELDS, $curl_post_data);
 
 $curl_response = curl_exec($curl);
