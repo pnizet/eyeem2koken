@@ -36,6 +36,9 @@ Setup
   
 Once it's done the script will execute every 5 minutes to check if there is a new picture on your eyeem account and will upload it to your koken install.
 
+Todo
+---------------------
+* Find a way to keep the created date.
 
 Disclaimer
 ---------------------
