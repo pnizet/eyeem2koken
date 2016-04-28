@@ -142,7 +142,11 @@ curl_setopt($curl, CURLOPT_SAFE_UPLOAD, false);
 curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($curl, CURLOPT_TIMEOUT, 100);
 curl_setopt($curl, CURLOPT_POST, true);
+<<<<<<< HEAD
 curl_setopt($curl, CURLOPT_HTTPHEADER, array('X-Koken-Token: '.$koken_token));
+=======
+curl_setopt($curl, CURLOPT_HTTPHEADER, array('X-Koken-Token: $koken_token'));
+>>>>>>> origin/master
 curl_setopt($curl, CURLOPT_POSTFIELDS, $curl_post_data);
 $curl_response = curl_exec($curl);
 
