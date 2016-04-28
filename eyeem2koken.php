@@ -87,6 +87,9 @@ for ($i = $eyeem_limit; $i >= 1; $i--) {
 $eyeem_photo = $photo_list_data->photos->items[$j]->id;
 echo 'photo_uploading : '.$last_photo_uploaded; //for log
 echo '\n';                                      //for log
+ 
+//if no more pictures need to be uploaded 
+if (strcmp($eyeem_photo,$last_photo_uploaded)) {echo "No more pictures"; exit; }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 //Requesting picture details
