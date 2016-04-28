@@ -29,7 +29,7 @@ Setup
 	   * `$eyeem_username = "YOUR_EYEEM_USERNAME";                              `
 	   * `$koken_url = 'YOUR_KOKEN_SERVER_URL';                                 `
 	   * `$koken_token = "YOUR_KOKEN_TOKEN";                                    `
-	   * `$img_dir = 'YOUR_PATH/img/';    //YOU HAVE TO CREATE A img DIRECTORY  `
+	   * `$img_dir = 'YOUR_PATH/img/';   
 * Configure your cron
  * launch the following command `vi /etc/crontab`
  * insert the line at the begining : `5  *   *   *   *   root    cd [YOUR_PATH]/eyeem2koken; php -f eyeem2koken.php   `
@@ -38,7 +38,7 @@ Once it's done the script will execute every 5 minutes to check if there is a ne
 
 Todo
 ---------------------
-* Add an easy to get the eyeem token
+* Add an easier to get the eyeem token. 
 * Find a way to keep the created date.
 
 Disclaimer
