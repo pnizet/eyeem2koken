@@ -35,7 +35,6 @@ $eyeem_token = "YOUR_EYEEM_TOKEN";
 $eyeem_username = "YOUR_EYEEM_USERNAME"; 
 $koken_url = 'YOUR_KOKEN_SERVER_URL';
 $koken_token = "YOUR_KOKEN_TOKEN";
-$img_dir = 'YOUR_PATH/img/';    //YOU HAVE TO CREATE A img DIRECTORY
 $file = 'last.txt';
 
 //API URLs
@@ -44,6 +43,11 @@ $koken_api_url = $koken_url.'/api.php?/content';
 
 $eyeem_limit = "200";
 $eyeem_photos_list = 'users/'.$eyeem_username.'/photos?access_token='.$eyeem_token.'&limit='.$eyeem_limit;
+
+//create dir if doesn't exist
+if (!file_exists($dir) && !is_dir($dir)) {
+    mkdir($dir);         
+}
 
 echo date('Y-m-d\TH:i:sO'); //for log
 echo '\n';                  //for log
@@ -117,8 +121,8 @@ if ($title == "") {
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // Download locally the picture (with a clean filename)
 $tmp_filename = preg_replace(array('/\s/', '/\.[\.]+/', '/[^\w_\.\-]/'), array('_', '.', ''), $title.'.jpg');
-$result = download($url_photo_big,$img_dir.$tmp_filename);
-$file_name_with_full_path = realpath($img_dir.$tmp_filename);
+$result = download($url_photo_big,$dir.$tmp_filename);
+$file_name_with_full_path = realpath($dir.$tmp_filename);
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
