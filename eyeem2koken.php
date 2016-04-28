@@ -35,6 +35,7 @@ $eyeem_token = "YOUR_EYEEM_TOKEN";
 $eyeem_username = "YOUR_EYEEM_USERNAME"; 
 $koken_url = 'YOUR_KOKEN_SERVER_URL';
 $koken_token = "YOUR_KOKEN_TOKEN";
+$dir = 'YOUR_PATH/img/';  
 $file = 'last.txt';
 
 //API URLs
