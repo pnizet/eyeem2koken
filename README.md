@@ -17,7 +17,7 @@ Setup
 ---------------------
 * Eyeem access Token :
   * Go to https://www.eyeem.com/developers/apps/list 
-  * And create an app to get a token
+  * And create an app to get a token (https://github.com/eyeem/Public-API#oauth)
 * koken access token : 
   * Go to your admin panel
   * Settings / Application
@@ -38,6 +38,7 @@ Once it's done the script will execute every 5 minutes to check if there is a ne
 
 Todo
 ---------------------
+* Add an easy to get the eyeem token
 * Find a way to keep the created date.
 
 Disclaimer
