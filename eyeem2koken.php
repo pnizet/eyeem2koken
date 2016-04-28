@@ -78,23 +78,18 @@ echo '\n';                                          //for log
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 //Identifying picture to sent
-//Extraction de liste des photos les plus anciennes en premier (on sort de la boucle des que l'on a trouvé la derniere photo traitée,)   A SUPPR
 for ($i = $eyeem_limit; $i >= 1; $i--) {
-		if ($photo_list_data->photos->items[$i]->id == $last_photo_uploaded) {
-			$j=$i-1;
-		}
+	if ($photo_list_data->photos->items[$i]->id == $last_photo_uploaded) {
+		$j=$i-1;
+	}
 }
-
 
 $eyeem_photo = $photo_list_data->photos->items[$j]->id;
 echo 'photo_uploading : '.$last_photo_uploaded; //for log
 echo '\n';                                      //for log
- 
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 //Requesting picture details
-//requete 2 Eyeem  A SUPPR
 $eyeem_photos_data = 'photos/'.$eyeem_photo.'?access_token='.$eyeem_token.'&detailed=1';
 $photo_data = request($eyeem_api_url.$eyeem_photos_data);
 echo 'Request photo details Eyeem ok!'; //for log
@@ -115,22 +110,17 @@ $tags = 'mobile_photography,eyeem,'.preg_replace('/\s/',',',$caption);
 
 echo $title; //for log
 echo '\n';   //for log
-if ($title == "") {
-	$title = "Untitled_".$updated;
-}
-
+if ($title == "") {	$title = "Untitled_".$updated;}
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // Download locally the picture (with a clean filename)
 $tmp_filename = preg_replace(array('/\s/', '/\.[\.]+/', '/[^\w_\.\-]/'), array('_', '.', ''), $title.'.jpg');
 $result = download($url_photo_big,$dir.$tmp_filename);
 $file_name_with_full_path = realpath($dir.$tmp_filename);
 
-
 ///////////////////////////////////////////////////////////////////////////////////////////////
 //Uploading the picture and datas to Koken
 $service_url = $koken_api_url;
 $curl = curl_init($service_url);
-
 $curl_post_data = array(
 	'file'          => new CurlFile($file_name_with_full_path, 'image/jpg'),
     'visibility' 	=> 'public',
