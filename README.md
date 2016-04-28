@@ -24,7 +24,6 @@ Setup
   * Create new access token
   * Choose "Read and Write" add a description
 * Upload the eyeem2koken.php file to your server
-* Create a `img` directory next to eyeem2koken.php
 * Modify the following configs :
 	   * `$eyeem_token = "YOUR_EYEEM_TOKEN";                                    `
 	   * `$eyeem_username = "YOUR_EYEEM_USERNAME";                              `
