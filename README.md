@@ -15,22 +15,28 @@ What you need
 
 Setup
 ---------------------
-* Eyeem access Token :
-  * Go to https://www.eyeem.com/developers/apps/list 
-  * And create an app to get a token (https://github.com/eyeem/Public-API#oauth)
+* Launch setup.php
+* Eyeem access Token : 
+	* Click on the provided link to get yours
+	* Go to https://www.eyeem.com/developers/apps/list 
+	* And create an app to get ClientID and a ClientSecret
+	* copy the value of ClientID and ClientSecret inside config.php and save it
+	* Replace YOUR_KOKEN_USERNAME value by your username
+* Relaunch setup.php
+* Click on the provided link, Now your Eyeem token is configured !
 * koken access token : 
   * Go to your admin panel
   * Settings / Application
   * Create new access token
   * Choose "Read and Write" add a description
-* Upload the eyeem2koken.php file to your server
-* Modify the following configs :
-	   * `$eyeem_token = "YOUR_EYEEM_TOKEN";                                    `
-	   * `$eyeem_username = "YOUR_EYEEM_USERNAME";                              `
-	   * `$koken_url = 'YOUR_KOKEN_SERVER_URL';                                 `
-	   * `$koken_token = "YOUR_KOKEN_TOKEN";                                    `
-	   * `$img_dir = 'YOUR_PATH/img/';                                          `
-* Configure your cron
+  * Copy the given token and replace YOUR_KOKEN_TOKEN in the following line `$koken_token = "YOUR_KOKEN_TOKEN";  ` of config.php
+  * Replace YOUR_KOKEN_SERVER_URL in the following line `$koken_url = 'YOUR_KOKEN_SERVER_URL';` by your url
+* Setup is done !
+
+Using
+---------------------
+* You can launch eyeem2koken.php to upload your first picture to your koken install
+* Or you can Configure your cron
  * launch the following command `vi /etc/crontab`
  * insert the line at the begining : `5  *   *   *   *   root    cd [YOUR_PATH]/eyeem2koken; php -f eyeem2koken.php   `
   
@@ -38,7 +44,6 @@ Once it's done the script will execute every 5 minutes to check if there is a ne
 
 Todo
 ---------------------
-* Add an easier to get the eyeem token. 
 * Find a way to keep the created date.
 
 Disclaimer
