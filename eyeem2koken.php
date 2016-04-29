@@ -29,22 +29,10 @@
 //    TODO :                                                                                                                                                                       //
 //    * Find the correct syntax to keep the captured date (Eyeem side is OK, Koken not)                                          //
 ////////////////////////////////////////////////////////////////////////////////////////////////
+require('config.php');
+require('functions.php');
 
-//Configs
-$eyeem_token = "YOUR_EYEEM_TOKEN";
-$eyeem_username = "YOUR_EYEEM_USERNAME"; 
-$koken_url = 'YOUR_KOKEN_SERVER_URL';
-$koken_token = "YOUR_KOKEN_TOKEN";
-$dir = 'YOUR_PATH/img/';  
-$file = 'last.txt';
-
-//API URLs
-$eyeem_api_url = 'https://api.eyeem.com/v2/';
-$koken_api_url = $koken_url.'/api.php?/content';
-
-$eyeem_limit = "200";
-$eyeem_photos_list = 'users/'.$eyeem_username.'/photos?access_token='.$eyeem_token.'&limit='.$eyeem_limit;
-
+echo '<br/><br/>';
 //create dir if doesn't exist
 if (!file_exists($dir) && !is_dir($dir)) {
     mkdir($dir);         
@@ -54,10 +42,18 @@ echo date('Y-m-d\TH:i:sO'); //for log
 echo '\n';                  //for log
 ///////////////////////////////////////////////////////////////////////////////////////////////
 //Requesting picture list from Eyeem
+//one first request to get the number of pictures of this account
+$eyeem_limit = "2";
+$eyeem_photos_list = 'users/'.$eyeem_username.'/photos?access_token='.$eyeem_token.'&limit='.$eyeem_limit;
 $photo_list_data = request($eyeem_api_url.$eyeem_photos_list);
+$lp = $photo_list_data->photos->total;
+
+$eyeem_photos_list = 'users/'.$eyeem_username.'/photos?access_token='.$eyeem_token.'&limit='.$lp;
+$photo_list_data = request($eyeem_api_url.$eyeem_photos_list);
+//second one the request all the pictures
 echo 'Request photo list Eyeem ok!'; //for log
 echo '\n';                           //for log
-$lp = $photo_list_data->photos->total;
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 //Reading last picture sent
@@ -68,8 +64,9 @@ if(file_exists($file)) {
 	}
 	fclose($fh);
 } else {
+	// if file doesn't exist we create it
 	$fh = fopen($file,'w');
-	fwrite($fh,$photo_list_data->photos->items[$lp]->id);
+	fwrite($fh,$photo_list_data->photos->items[$lp-1]->id);
 	fclose($fh);
 }
 
@@ -78,18 +75,18 @@ echo '\n';                                          //for log
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 //Identifying picture to sent
-for ($i = $eyeem_limit; $i >= 1; $i--) {
+for ($i = $lp; $i >= 1; $i--) {
 	if ($photo_list_data->photos->items[$i]->id == $last_photo_uploaded) {
 		$j=$i-1;
 	}
 }
 
 $eyeem_photo = $photo_list_data->photos->items[$j]->id;
-echo 'photo_uploading : '.$last_photo_uploaded; //for log
-echo '\n';                                      //for log
- 
+echo 'photo_uploading : '.$eyeem_photo; //for log
+echo '\n';                              //for log
+
 //if no more pictures need to be uploaded 
-if (strcmp($eyeem_photo,$last_photo_uploaded)) {echo "No more pictures"; exit; }
+if (strcmp($eyeem_photo,$last_photo_uploaded)==0) {echo "No more pictures"; exit; }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 //Requesting picture details
@@ -126,7 +123,7 @@ $service_url = $koken_api_url;
 $curl = curl_init($service_url);
 $curl_post_data = array(
 	'file'          => new CurlFile($file_name_with_full_path, 'image/jpg'),
-    'visibility' 	=> 'public',
+    'visibility' 	=> 'private',
     'name'			=> $tmp_filename,
     'upload_session_start'=> $updated ,
     'license'		=> 'all',
@@ -164,97 +161,5 @@ fwrite($fh,$eyeem_photo);
 fclose($fh);
 
 
-
-
-
-
-
-
-
-
-
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////
-//
-//                         FUNCTIONS
-//
-///////////////////////////////////////////////////////////////////////////////////////////////
-
-/*****************************************************************************/
-// Replace tag numbers (string like [a:46548] with the name of it
-function replace_tag_number_by_text($string)
-{
-	global $eyeem_token,$eyeem_api_url;
-	$corres = array();
-
-	if (preg_match_all('/\[a:\d+\]/', $string, $matches)) {
-		//on va chercher le titre de chaque
-		foreach ($matches[0] as $item) {
-			//on fait une requete eyeem pour aller chercher le tag
-			preg_match('/\d+/',$item,$eyeem_album_id);
-			
-				///////////////////////////////////////////////////////////////////////////////////////////////
-				//Requesting album details
-
-				$eyeem_album_data = 'albums/'.$eyeem_album_id[0].'?access_token='.$eyeem_token;
-				$album_data = request($eyeem_api_url.$eyeem_album_data);
-
-		// on aggregue les données dans un tableau
-		array_push($corres, array ($item, $album_data->album->name));
-		}
-	}
-	//on fait la substitution : 
-	for ($i = 0; $i <= sizeof($corres)-1; $i++) {	
-		$string = preg_replace($corres[$i][0],$corres[$i][1],preg_replace('/[\[\]]/','',preg_replace('/[\[\]]/','',$string)));
-		}
-	return $string;
-}
-
-
-
-
-/*****************************************************************************/
-// do a curl request
-function request($url)
-{
-	$curl = curl_init($url);
-	curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-	$curl_response = curl_exec($curl);
-
-	if ($curl_response === false) {
-		$info = curl_getinfo($curl);
-		curl_close($curl);
-		die('error occured during Eyeem curl exec. Additioanl info: ' . var_export($info));
-	}
-	curl_close($curl);
-	$decoded = json_decode($curl_response);
-	if (isset($decoded->response->status) && $decoded->response->status == 'ERROR') {
-		die('Eyeem error occured: ' . $decoded->response->errormessage);
-	}	
-	return $decoded;
-}
-
-/*****************************************************************************/
-// just download a file
-function download($file_source, $file_target) {
-    $rh = fopen($file_source, 'rb');
-    $wh = fopen($file_target, 'w+b');
-    if (!$rh || !$wh) {
-        return false;
-    }
-
-    while (!feof($rh)) {
-        if (fwrite($wh, fread($rh, 4096)) === FALSE) {
-            return false;
-        }
-        echo ' ';
-        flush();
-    }
-
-    fclose($rh);
-    fclose($wh);
-    return true;
-}
 
 ?>

@@ -29,7 +29,7 @@ Setup
 	   * `$eyeem_username = "YOUR_EYEEM_USERNAME";                              `
 	   * `$koken_url = 'YOUR_KOKEN_SERVER_URL';                                 `
 	   * `$koken_token = "YOUR_KOKEN_TOKEN";                                    `
-	   * `$img_dir = 'YOUR_PATH/img/';   
+	   * `$img_dir = 'YOUR_PATH/img/';                                          `
 * Configure your cron
  * launch the following command `vi /etc/crontab`
  * insert the line at the begining : `5  *   *   *   *   root    cd [YOUR_PATH]/eyeem2koken; php -f eyeem2koken.php   `
