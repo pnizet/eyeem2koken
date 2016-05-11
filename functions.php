@@ -84,190 +84,122 @@ function download($file_source, $file_target) {
 
 
 
+/*****************************************************************************/
+// IPTC EASY
+    /************************************************************\
+   
+        IPTC EASY 1.0 - IPTC data manipulator for JPEG images
+           
+        All reserved www.image-host-script.com
+       
+        Sep 15, 2008
+   
+    \************************************************************/
 
+    DEFINE('IPTC_OBJECT_NAME', '005');
+    DEFINE('IPTC_EDIT_STATUS', '007');
+    DEFINE('IPTC_PRIORITY', '010');
+    DEFINE('IPTC_CATEGORY', '015');
+    DEFINE('IPTC_SUPPLEMENTAL_CATEGORY', '020');
+    DEFINE('IPTC_FIXTURE_IDENTIFIER', '022');
+    DEFINE('IPTC_KEYWORDS', '025');
+    DEFINE('IPTC_RELEASE_DATE', '030');
+    DEFINE('IPTC_RELEASE_TIME', '035');
+    DEFINE('IPTC_SPECIAL_INSTRUCTIONS', '040');
+    DEFINE('IPTC_REFERENCE_SERVICE', '045');
+    DEFINE('IPTC_REFERENCE_DATE', '047');
+    DEFINE('IPTC_REFERENCE_NUMBER', '050');
+    DEFINE('IPTC_CREATED_DATE', '055');
+    DEFINE('IPTC_CREATED_TIME', '060');
+    DEFINE('IPTC_ORIGINATING_PROGRAM', '065');
+    DEFINE('IPTC_PROGRAM_VERSION', '070');
+    DEFINE('IPTC_OBJECT_CYCLE', '075');
+    DEFINE('IPTC_BYLINE', '080');
+    DEFINE('IPTC_BYLINE_TITLE', '085');
+    DEFINE('IPTC_CITY', '090');
+    DEFINE('IPTC_PROVINCE_STATE', '095');
+    DEFINE('IPTC_COUNTRY_CODE', '100');
+    DEFINE('IPTC_COUNTRY', '101');
+    DEFINE('IPTC_ORIGINAL_TRANSMISSION_REFERENCE',     '103');
+    DEFINE('IPTC_HEADLINE', '105');
+    DEFINE('IPTC_CREDIT', '110');
+    DEFINE('IPTC_SOURCE', '115');
+    DEFINE('IPTC_COPYRIGHT_STRING', '116');
+    DEFINE('IPTC_CAPTION', '120');
+    DEFINE('IPTC_LOCAL_CAPTION', '121');
 
-
-
-
-////////////////////////////////////////////////    
-function dump($var,$caption="",$echo=true,$depth=0,$tableWrap=true)                                                                                                                                                       // A SUPPR
-{                                                                                                                                                                                                                         // A SUPPR
-	global $dumped_css;                                                                                                                                                                                                   // A SUPPR
-                                                                                                                                                                                                                          // A SUPPR
-	$wrapInTable=true;                                                                                                                                                                                                    // A SUPPR
-                                                                                                                                                                                                                          // A SUPPR
-	if($depth>12)                                                                                                                                                                                                         // A SUPPR
-	{                                                                                                                                                                                                                     // A SUPPR
-		$ret = "<i>[too deep]</i>\n";                                                                                                                                                                                     // A SUPPR
-		if($echo) echo $ret;                                                                                                                                                                                              // A SUPPR
-		return($ret);                                                                                                                                                                                                     // A SUPPR
-	}                                                                                                                                                                                                                     // A SUPPR
-                                                                                                                                                                                                                          // A SUPPR
-	$type=gettype($var);                                                                                                                                                                                                  // A SUPPR
-                                                                                                                                                                                                                          // A SUPPR
-	if($caption=="")                                                                                                                                                                                                      // A SUPPR
-	{                                                                                                                                                                                                                     // A SUPPR
-		$caption=$type;                                                                                                                                                                                                   // A SUPPR
-	}                                                                                                                                                                                                                     // A SUPPR
-	else                                                                                                                                                                                                                  // A SUPPR
-	{                                                                                                                                                                                                                     // A SUPPR
-		$caption.=" - ".$type;                                                                                                                                                                                            // A SUPPR
-	}                                                                                                                                                                                                                     // A SUPPR
-                                                                                                                                                                                                                          // A SUPPR
-	$ret="";                                                                                                                                                                                                              // A SUPPR
-	$css="";                                                                                                                                                                                                              // A SUPPR
-                                                                                                                                                                                                                          // A SUPPR
-	if(!$dumped_css)                                                                                                                                                                                                      // A SUPPR
-	{                                                                                                                                                                                                                     // A SUPPR
-		$dumped_css=true;                                                                                                                                                                                                 // A SUPPR
-                                                                                                                                                                                                                          // A SUPPR
-		$css.="<style type='text/css'>";                                                                                                                                                                                  // A SUPPR
-		$css.=".dump";                                                                                                                                                                                                    // A SUPPR
-		$css.="{";                                                                                                                                                                                                        // A SUPPR
-		$css.="	background:white;";                                                                                                                                                                                       // A SUPPR
-		$css.="	color:black;";                                                                                                                                                                                            // A SUPPR
-		$css.="	border-top:1px solid black;";                                                                                                                                                                             // A SUPPR
-		$css.="	border-left:1px solid black;";                                                                                                                                                                            // A SUPPR
-		$css.="}\n";                                                                                                                                                                                                      // A SUPPR
-		$css.=".dump td";                                                                                                                                                                                                 // A SUPPR
-		$css.="{";                                                                                                                                                                                                        // A SUPPR
-		$css.="	padding-left:6px;";                                                                                                                                                                                       // A SUPPR
-		$css.="	padding-right:6px;";                                                                                                                                                                                      // A SUPPR
-		$css.="	border-bottom:1px solid black;";                                                                                                                                                                          // A SUPPR
-		$css.="	border-right:1px solid black;";                                                                                                                                                                           // A SUPPR
-		$css.="}\n";                                                                                                                                                                                                      // A SUPPR
-		$css.=".dump_header";                                                                                                                                                                                             // A SUPPR
-		$css.="{";                                                                                                                                                                                                        // A SUPPR
-		$css.="	background:black;";                                                                                                                                                                                       // A SUPPR
-		$css.="	color:white;";                                                                                                                                                                                            // A SUPPR
-		$css.="}\n";                                                                                                                                                                                                      // A SUPPR
-		$css.=".dump_type";                                                                                                                                                                                               // A SUPPR
-		$css.="{";                                                                                                                                                                                                        // A SUPPR
-		$css.="	background:gray;";                                                                                                                                                                                        // A SUPPR
-		$css.="	color:white;";                                                                                                                                                                                            // A SUPPR
-		$css.="}\n";                                                                                                                                                                                                      // A SUPPR
-		$css.=".dump_label";                                                                                                                                                                                              // A SUPPR
-		$css.="{";                                                                                                                                                                                                        // A SUPPR
-		$css.="	background:silver;";                                                                                                                                                                                      // A SUPPR
-		$css.="	color:black;";                                                                                                                                                                                            // A SUPPR
-		$css.="}\n";                                                                                                                                                                                                      // A SUPPR
-		$css.=".dump_value";                                                                                                                                                                                              // A SUPPR
-		$css.="{";                                                                                                                                                                                                        // A SUPPR
-		$css.="}\n";                                                                                                                                                                                                      // A SUPPR
-		$css.=".dump_scalar";                                                                                                                                                                                             // A SUPPR
-		$css.="{";                                                                                                                                                                                                        // A SUPPR
-		$css.="max-height:200px; max-width:800px; overflow:auto;";                                                                                                                                                        // A SUPPR
-		$css.="}";                                                                                                                                                                                                        // A SUPPR
-		$css.="</style>";                                                                                                                                                                                                 // A SUPPR
-	}                                                                                                                                                                                                                     // A SUPPR
-                                                                                                                                                                                                                          // A SUPPR
-	if(is_null($var))                                                                                                                                                                                                     // A SUPPR
-	{                                                                                                                                                                                                                     // A SUPPR
-		$ret.="<tr><td colspan='3'><i>-NULL-</i></td></tr>\n";                                                                                                                                                            // A SUPPR
-	}                                                                                                                                                                                                                     // A SUPPR
-	elseif(is_scalar($var))                                                                                                                                                                                               // A SUPPR
-	{                                                                                                                                                                                                                     // A SUPPR
-		$ret.="<tr><td colspan='3' class='dump_value'><div class='dump_scalar'>".($var.""=="" ? "<i>[empty]</i>" : htmlentities($var))."</div></td></tr>\n";                                                              // A SUPPR
-	}                                                                                                                                                                                                                     // A SUPPR
-	elseif(is_resource($var))                                                                                                                                                                                             // A SUPPR
-	{                                                                                                                                                                                                                     // A SUPPR
-		$ret.="<tr><td colspan='3'><i>[handle]</i></td></tr>\n";                                                                                                                                                          // A SUPPR
-	}                                                                                                                                                                                                                     // A SUPPR
-	elseif(is_array($var))                                                                                                                                                                                                // A SUPPR
-	{                                                                                                                                                                                                                     // A SUPPR
-		foreach($var as $k=>$v)                                                                                                                                                                                           // A SUPPR
-		{                                                                                                                                                                                                                 // A SUPPR
-			$tp=strtolower(gettype($v));                                                                                                                                                                                  // A SUPPR
-			if(is_bool($v)) $v=($v?"true":"false");                                                                                                                                                                       // A SUPPR
-			$ret.="<tr valign='top'>";                                                                                                                                                                                    // A SUPPR
-			$ret.="<td class='dump_type' style='cursor:pointer' onclick='l=this.nextSibling; v=l.nextSibling; vis=v.style.display==\"\"; v.style.display=(vis ? \"none\" : \"\"); l.colSpan=(vis ? 2 : 1);'>".$tp."</td>"; // A SUPPR
-			$ret.="<td class='dump_label'>".$k."</td>";                                                                                                                                                                   // A SUPPR
-			if(is_scalar($v))                                                                                                                                                                                             // A SUPPR
-			{                                                                                                                                                                                                             // A SUPPR
-				$ret.="<td class='dump_value'><div class='dump_scalar'>".($v.""=="" ? "<i>[empty]</i>" : htmlentities($v))."</div></td>";                                                                                 // A SUPPR
-			}                                                                                                                                                                                                             // A SUPPR
-			elseif(is_null($v))                                                                                                                                                                                           // A SUPPR
-			{                                                                                                                                                                                                             // A SUPPR
-				$ret.="<td class='dump_value'><i>[null]</i></td>";                                                                                                                                                        // A SUPPR
-			}                                                                                                                                                                                                             // A SUPPR
-			else                                                                                                                                                                                                          // A SUPPR
-			{                                                                                                                                                                                                             // A SUPPR
-				try                                                                                                                                                                                                       // A SUPPR
-				{                                                                                                                                                                                                         // A SUPPR
-					if(preg_match("/\bGLOBALS\b/",$k) && is_array($v) && isset($v[$k]))                                                                                                                                   // A SUPPR
-					{                                                                                                                                                                                                     // A SUPPR
-						$ret.="<td class='dump_value'><i>[global recursion loop]</i></td>";                                                                                                                               // A SUPPR
-					}                                                                                                                                                                                                     // A SUPPR
-					else                                                                                                                                                                                                  // A SUPPR
-					{                                                                                                                                                                                                     // A SUPPR
-						$ret.="<td class='dump_value'>".dump($v,"",false,$depth+1)."</td>";                                                                                                                               // A SUPPR
-					}                                                                                                                                                                                                     // A SUPPR
-				}                                                                                                                                                                                                         // A SUPPR
-				catch(Exception $e)                                                                                                                                                                                       // A SUPPR
-				{                                                                                                                                                                                                         // A SUPPR
-					$ret.="<td class='dump_value'><i>".dump($e,"ERROR",false)."</i></td>";                                                                                                                                // A SUPPR
-				}                                                                                                                                                                                                         // A SUPPR
-			}                                                                                                                                                                                                             // A SUPPR
-			$ret.="</tr>\n";                                                                                                                                                                                              // A SUPPR
-		}                                                                                                                                                                                                                 // A SUPPR
-	}                                                                                                                                                                                                                     // A SUPPR
-	elseif($type=="object")                                                                                                                                                                                               // A SUPPR
-	{                                                                                                                                                                                                                     // A SUPPR
-		$class=get_class($var);                                                                                                                                                                                           // A SUPPR
-		$caption.=" ~ ".$class;                                                                                                                                                                                           // A SUPPR
-		$properties=get_class_vars($class);                                                                                                                                                                               // A SUPPR
-		$methods=get_class_methods($class);                                                                                                                                                                               // A SUPPR
-		$v=array();                                                                                                                                                                                                       // A SUPPR
-		$obj=print_r($var,true);                                                                                                                                                                                          // A SUPPR
-		$k=explode("\n",$obj);                                                                                                                                                                                            // A SUPPR
-		for($x=0;$x<count($k);$x++)                                                                                                                                                                                       // A SUPPR
-		{                                                                                                                                                                                                                 // A SUPPR
-			if(preg_match("/^[\s\t]*\[[a-z][a-z0-9]+\][\s\t]*=>/i",$k[$x]))                                                                                                                                               // A SUPPR
-			{                                                                                                                                                                                                             // A SUPPR
-				$key=preg_replace("/^[\s\t]*\[([a-z][a-z0-9]+)\].*/i","$1",$k[$x]);                                                                                                                                       // A SUPPR
-				try                                                                                                                                                                                                       // A SUPPR
-				{                                                                                                                                                                                                         // A SUPPR
-					eval('$v["'.$key.'"]=$var->'.$key.';');                                                                                                                                                               // A SUPPR
-					if(strtolower($key)=="parentnode" && gettype($v[$key])=="object")                                                                                                                                     // A SUPPR
-					{                                                                                                                                                                                                     // A SUPPR
-						$v[$key]="object ~ ".get_class($v[$key]);                                                                                                                                                         // A SUPPR
-					}                                                                                                                                                                                                     // A SUPPR
-				}                                                                                                                                                                                                         // A SUPPR
-				catch(Exception $e)                                                                                                                                                                                       // A SUPPR
-				{                                                                                                                                                                                                         // A SUPPR
-					$v[$key]='Error: '.$e->getMessage();                                                                                                                                                                  // A SUPPR
-				}                                                                                                                                                                                                         // A SUPPR
-				try                                                                                                                                                                                                       // A SUPPR
-				{                                                                                                                                                                                                         // A SUPPR
-					if($v[$key]===$var) $v[$key]="<i>recursion loop</i>";                                                                                                                                                 // A SUPPR
-				}                                                                                                                                                                                                         // A SUPPR
-				catch(Exception $e)                                                                                                                                                                                       // A SUPPR
-				{                                                                                                                                                                                                         // A SUPPR
-					$v[$key]="Error: ".$e->getMessage();                                                                                                                                                                  // A SUPPR
-				}                                                                                                                                                                                                         // A SUPPR
-			}                                                                                                                                                                                                             // A SUPPR
-		}                                                                                                                                                                                                                 // A SUPPR
-		try                                                                                                                                                                                                               // A SUPPR
-		{                                                                                                                                                                                                                 // A SUPPR
-			$ret=dump($v,"",false,$depth+1,false);                                                                                                                                                                        // A SUPPR
-		}                                                                                                                                                                                                                 // A SUPPR
-		catch(Exception $e)                                                                                                                                                                                               // A SUPPR
-		{                                                                                                                                                                                                                 // A SUPPR
-			$ret.="<tr><td colspan='3'><i>".$e->getMessage()."</i></td></tr>\n";                                                                                                                                          // A SUPPR
-		}                                                                                                                                                                                                                 // A SUPPR
-	}                                                                                                                                                                                                                     // A SUPPR
-	else                                                                                                                                                                                                                  // A SUPPR
-	{                                                                                                                                                                                                                     // A SUPPR
-		$ret.="<tr><td colspan='3'><i>[unknown type]</i></td></tr>\n";                                                                                                                                                    // A SUPPR
-	}                                                                                                                                                                                                                     // A SUPPR
-                                                                                                                                                                                                                          // A SUPPR
-	if($tableWrap)                                                                                                                                                                                                        // A SUPPR
-	{                                                                                                                                                                                                                     // A SUPPR
-		$ret=$css."<table border='0' cellpadding='2' cellspacing='0' class='dump'><tr class='dump_header'><td colspan='3'>".$caption."</td></tr>\n".$ret."</table>\n";                                                    // A SUPPR
-		if($echo) echo $ret;                                                                                                                                                                                              // A SUPPR
-	}                                                                                                                                                                                                                     // A SUPPR
-                                                                                                                                                                                                                          // A SUPPR
-	return($ret);                                                                                                                                                                                                         // A SUPPR
-}    
+    class iptc {
+        var $meta=Array();
+        var $hasmeta=false;
+        var $file=false;
+       
+       
+        function iptc($filename) {
+            $size = getimagesize($filename,$info);
+            $this->hasmeta = isset($info["APP13"]);
+            if($this->hasmeta)
+                $this->meta = iptcparse ($info["APP13"]);
+            $this->file = $filename;
+        }
+        function set($tag, $data) {
+            $this->meta ["2#$tag"]= Array( $data );
+            $this->hasmeta=true;
+        }
+        function get($tag) {
+            return isset($this->meta["2#$tag"]) ? $this->meta["2#$tag"][0] : false;
+        }
+       
+        function dump() {
+            print_r($this->meta);
+        }
+        function binary() {
+            $iptc_new = '';
+            foreach (array_keys($this->meta) as $s) {
+                $tag = str_replace("2#", "", $s);
+                $iptc_new .= $this->iptc_maketag(2, $tag, $this->meta[$s][0]);
+            }       
+            return $iptc_new;   
+        }
+        function iptc_maketag($rec,$dat,$val) {
+            $len = strlen($val);
+            if ($len < 0x8000) {
+                   return chr(0x1c).chr($rec).chr($dat).
+                   chr($len >> 8).
+                   chr($len & 0xff).
+                   $val;
+            } else {
+                   return chr(0x1c).chr($rec).chr($dat).
+                   chr(0x80).chr(0x04).
+                   chr(($len >> 24) & 0xff).
+                   chr(($len >> 16) & 0xff).
+                   chr(($len >> 8 ) & 0xff).
+                   chr(($len ) & 0xff).
+                   $val;
+                  
+            }
+        }   
+        function write() {
+            if(!function_exists('iptcembed')) return false;
+            $mode = 0;
+            $content = iptcembed($this->binary(), $this->file, $mode);   
+            $filename = $this->file;
+               
+            @unlink($filename); #delete if exists
+           
+            $fp = fopen($filename, "w");
+            fwrite($fp, $content);
+            fclose($fp);
+        }   
+       
+        #requires GD library installed
+        function removeAllTags() {
+            $this->hasmeta=false;
+            $this->meta=Array();
+            $img = imagecreatefromstring(implode(file($this->file)));
+            @unlink($this->file); #delete if exists
+            imagejpeg($img,$this->file,100);
+        }
+    };
+      
 
 ?>

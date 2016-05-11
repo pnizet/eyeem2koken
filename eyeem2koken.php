@@ -118,6 +118,16 @@ $result = download($url_photo_big,$dir.$tmp_filename);
 $file_name_with_full_path = realpath($dir.$tmp_filename);
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
+// Embbed Exif data
+$i = new iptc($file_name_with_full_path);
+echo $i->set(IPTC_CREATED_DATE,date("Ymd",strtotime($updated)));
+echo $i->set(IPTC_CREATED_TIME,date("His",strtotime($updated)));
+echo $i->set(IPTC_OBJECT_NAME,$title);
+echo $i->set(IPTC_HEADLINE,$title);
+echo $i->set(IPTC_KEYWORDS,$caption);
+$i->write();
+
+///////////////////////////////////////////////////////////////////////////////////////////////
 //Uploading the picture and datas to Koken
 $service_url = $koken_api_url;
 $curl = curl_init($service_url);
