@@ -1,10 +1,9 @@
 # eyeem2koken
 eyeem to koken import script
 
-The aim of this script is to import automatically your pictures from __Eyeem__ (https://www.eyeem.com) to your __Koken__ installation (http://koken.me/)
+The aim of this script is to import automatically your pictures from your __Eyeem__ account (https://www.eyeem.com) to your __Koken__ installation (http://koken.me/)
 
-It also keep datas from Eyeem (GPS coords, title, caption) and trasnfert the biggest picture available on eyeem.
-
+It also keep datas from Eyeem and transferts the biggest picture available on Eyeem to koken.
 This is working with the Eyeem API, the koken API, and could be used with cron.
 
 What you need 
@@ -45,5 +44,5 @@ Once it's done the script will execute every 5 minutes to check if there is a ne
 
 Disclaimer
 ---------------------
-* code could be improved for sure
+* code could be improved for sure (I'm an amateur codeur)
 * There is no doc concerning the Koken API (it as been ""reverse-engineered"" by reading the code)
