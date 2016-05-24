@@ -14,33 +14,40 @@ What you need
 
 Setup
 ---------------------
-* Launch setup.php
+* Launch setup.php 
+![alt tag](https://raw.githubusercontent.com/pnizet/eyeem2koken/blob/master/pictures/01.jpg)
+* Open the config.php file on your server and modifiy your EyeemClientID, EyeemClientSecret, your eyeem username and the url of your koken installation.
+* Refresh setup.php
+![alt tag](https://raw.githubusercontent.com/pnizet/eyeem2koken/blob/master/pictures/02.jpg)
 * Eyeem access Token : 
-	* Click on the provided link to get yours
-	* Go to https://www.eyeem.com/developers/apps/list 
-	* And create an app to get ClientID and a ClientSecret
-	* copy the value of ClientID and ClientSecret inside config.php and save it
-	* Replace YOUR_KOKEN_USERNAME value by your username
-* Relaunch setup.php
-* Click on the provided link, Now your Eyeem token is configured !
+	* Click on the provided button.
+	* Now your Eyeem token is configured !
+	![alt tag](https://raw.githubusercontent.com/pnizet/eyeem2koken/blob/master/pictures/03.jpg)
 * koken access token : 
-  * Go to your admin panel
-  * Settings / Application
-  * Create new access token
-  * Choose "Read and Write" add a description
-  * Copy the given token and replace YOUR_KOKEN_TOKEN in the following line `$koken_token = "YOUR_KOKEN_TOKEN";  ` of config.php
-  * Replace YOUR_KOKEN_SERVER_URL in the following line `$koken_url = 'YOUR_KOKEN_SERVER_URL';` by your url
+	* Click on the provided button to get yours
+	* Grant Acces 	![alt tag](https://raw.githubusercontent.com/pnizet/eyeem2koken/blob/master/pictures/04.jpg)
+	![alt tag](https://raw.githubusercontent.com/pnizet/eyeem2koken/blob/master/pictures/05.jpg)
+	* Click on "Applications" (Left panel of your koken backend)
+	* ![alt tag](https://raw.githubusercontent.com/pnizet/eyeem2koken/blob/master/pictures/06.jpg)
+	* Copy the token value
+	* Paste it on the line $koken_token = "YOUR_KOKEN_TOKEN";
+* Refresh setup.php
 * Setup is done !
+![alt tag](https://raw.githubusercontent.com/pnizet/eyeem2koken/blob/master/pictures/07.jpg)
 
-Using
+Using it 
 ---------------------
-* You can launch eyeem2koken.php to upload your first picture to your koken install
-* Or you can Configure your cron
+* You can import all your pictures launching eyeem2koken_import_all.php (takes few seconds per pictures)
+* You can launch eyeem2koken_import_one.php to upload your first picture to your koken install
+* Or you can configure your cron
  * launch the following command `vi /etc/crontab`
- * insert the line at the begining : `5  *   *   *   *   root    cd [YOUR_PATH]/eyeem2koken; php -f eyeem2koken.php   `
-  
-Once it's done the script will execute every 5 minutes to check if there is a new picture on your eyeem account and will upload it to your koken install.
+ * insert the line at the begining : `5  *   *   *   *   root    cd [YOUR_PATH]/eyeem2koken; php -f eyeem2koken_import_one.php   `
+	Once it's done the script will execute every 5 minutes to check if there is a new picture on your eyeem account and will upload it to your koken install.
 
+Todo
+---------------------
+* Include GPS in the exif
+* Improve setup.php for the koken part
 
 Disclaimer
 ---------------------
