@@ -15,25 +15,25 @@ What you need
 Setup
 ---------------------
 * Launch setup.php 
-![alt tag](https://raw.githubusercontent.com/pnizet/eyeem2koken/blob/master/pictures/01.jpg)
+![alt tag](https://raw.githubusercontent.com/pnizet/eyeem2koken/master/pictures/01.jpg)
 * Open the config.php file on your server and modifiy your EyeemClientID, EyeemClientSecret, your eyeem username and the url of your koken installation.
 * Refresh setup.php
-![alt tag](https://raw.githubusercontent.com/pnizet/eyeem2koken/blob/master/pictures/02.jpg)
+![alt tag](https://raw.githubusercontent.com/pnizet/eyeem2koken/master/pictures/02.jpg)
 * Eyeem access Token : 
 	* Click on the provided button.
 	* Now your Eyeem token is configured !
-	![alt tag](https://raw.githubusercontent.com/pnizet/eyeem2koken/blob/master/pictures/03.jpg)
+	![alt tag](https://raw.githubusercontent.com/pnizet/eyeem2koken/master/pictures/03.jpg)
 * koken access token : 
 	* Click on the provided button to get yours
-	* Grant Acces 	![alt tag](https://raw.githubusercontent.com/pnizet/eyeem2koken/blob/master/pictures/04.jpg)
-	![alt tag](https://raw.githubusercontent.com/pnizet/eyeem2koken/blob/master/pictures/05.jpg)
+	* Grant Acces 	![alt tag](https://raw.githubusercontent.com/pnizet/eyeem2koken/master/pictures/04.jpg)
+	![alt tag](https://raw.githubusercontent.com/pnizet/eyeem2koken/master/pictures/05.jpg)
 	* Click on "Applications" (Left panel of your koken backend)
-	* ![alt tag](https://raw.githubusercontent.com/pnizet/eyeem2koken/blob/master/pictures/06.jpg)
+	* ![alt tag](https://raw.githubusercontent.com/pnizet/eyeem2koken/master/pictures/06.jpg)
 	* Copy the token value
 	* Paste it on the line $koken_token = "YOUR_KOKEN_TOKEN";
 * Refresh setup.php
 * Setup is done !
-![alt tag](https://raw.githubusercontent.com/pnizet/eyeem2koken/blob/master/pictures/07.jpg)
+![alt tag](https://raw.githubusercontent.com/pnizet/eyeem2koken/master/pictures/07.jpg)
 
 Using it 
 ---------------------
