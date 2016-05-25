@@ -12,7 +12,7 @@ What you need
 * A koken installation
 * A server where you can setup a crontab
 
-Setup
+Setup (https://github.com/pnizet/eyeem2koken/wiki/Setup.php)
 ---------------------
 * Launch setup.php
 * Open the config.php file on your server and modifiy your EyeemClientID, EyeemClientSecret, your eyeem username and the url of your koken installation.
@@ -29,15 +29,6 @@ Setup
 * Refresh setup.php
 * Setup is done !
 
-Set by setp in pictures
----------------------
-![alt tag](https://raw.githubusercontent.com/pnizet/eyeem2koken/master/pictures/01.jpg)
-![alt tag](https://raw.githubusercontent.com/pnizet/eyeem2koken/master/pictures/02.jpg)
-![alt tag](https://raw.githubusercontent.com/pnizet/eyeem2koken/master/pictures/03.jpg)
-![alt tag](https://raw.githubusercontent.com/pnizet/eyeem2koken/master/pictures/04.jpg) 
-![alt tag](https://raw.githubusercontent.com/pnizet/eyeem2koken/master/pictures/05.jpg)
-![alt tag](https://raw.githubusercontent.com/pnizet/eyeem2koken/master/pictures/06.jpg)
-![alt tag](https://raw.githubusercontent.com/pnizet/eyeem2koken/master/pictures/07.jpg)
 
 Using it 
 ---------------------
