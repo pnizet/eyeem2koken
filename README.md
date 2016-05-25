@@ -22,13 +22,14 @@ Setup
 * Eyeem access Token : 
 	* Click on the provided button.
 	* Now your Eyeem token is configured !
-	![alt tag](https://raw.githubusercontent.com/pnizet/eyeem2koken/master/pictures/03.jpg)
+![alt tag](https://raw.githubusercontent.com/pnizet/eyeem2koken/master/pictures/03.jpg)
 * koken access token : 
 	* Click on the provided button to get yours
-	* Grant Acces 	![alt tag](https://raw.githubusercontent.com/pnizet/eyeem2koken/master/pictures/04.jpg)
-	![alt tag](https://raw.githubusercontent.com/pnizet/eyeem2koken/master/pictures/05.jpg)
+	* Grant Acces 	
+![alt tag](https://raw.githubusercontent.com/pnizet/eyeem2koken/master/pictures/04.jpg)
+![alt tag](https://raw.githubusercontent.com/pnizet/eyeem2koken/master/pictures/05.jpg)
 	* Click on "Applications" (Left panel of your koken backend)
-	* ![alt tag](https://raw.githubusercontent.com/pnizet/eyeem2koken/master/pictures/06.jpg)
+![alt tag](https://raw.githubusercontent.com/pnizet/eyeem2koken/master/pictures/06.jpg)
 	* Copy the token value
 	* Paste it on the line $koken_token = "YOUR_KOKEN_TOKEN";
 * Refresh setup.php
