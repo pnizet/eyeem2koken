@@ -101,7 +101,7 @@ function eyeem2koken () {
 	$photoUrl= $photo_data->photo->photoUrl; 
 	$url_photo_big = preg_replace('(\d+/\d+)',$width.'/'.$height,$photoUrl,1); 
 	preg_match_all('/#(\S*)/',$title,$extracted_tags_from_title); //extract tags form title
-	$tags = preg_replace('/la,|le,|les,|des,|du,|de,|in,|the,|of,|at,/','','mobile_photography,eyeem,'.preg_replace('/\s/',',',$caption).preg_replace('/#/',',',implode(' ',$extracted_tags_from_title[0])));
+	$tags = preg_replace('/[^:alnum:](la|le|les|des|du|de|in|the|of|at)(\s|,)/','','mobile_photography,eyeem,'.preg_replace('/\s/',',',$caption).preg_replace('/#/',',',implode(' ',$extracted_tags_from_title[0])));
 
 	echo $title; //for log
 	echo '  ';   //for log
