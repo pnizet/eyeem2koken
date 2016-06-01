@@ -120,7 +120,7 @@ function eyeem2koken () {
 	echo $i->set(IPTC_CREATED_TIME,date("His",strtotime($updated)));
 	echo $i->set(IPTC_OBJECT_NAME,$title);
 	echo $i->set(IPTC_HEADLINE,$title);
-	echo $i->set(IPTC_KEYWORDS,$caption);
+	echo $i->set(IPTC_KEYWORDS,$tags);
 	$i->write();
 
 	///////////////////////////////////////////////////////////////////////////////////////////////
