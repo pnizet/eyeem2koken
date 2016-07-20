@@ -80,7 +80,7 @@ function eyeem2koken () {
 	echo '  ';                              //for log
 
 	//if no more pictures need to be uploaded 
-	if (strcmp($eyeem_photo,$last_photo_uploaded)==0) {echo "No more pictures"; exit; }
+	if (strcmp($eyeem_photo,$last_photo_uploaded)==0 || strcmp($eyeem_photo,"")==0) {echo "No more pictures"; exit; }
 
 	///////////////////////////////////////////////////////////////////////////////////////////////
 	//Requesting picture details
@@ -97,7 +97,7 @@ function eyeem2koken () {
 	$longitude = $photo_data->photo->longitude; 
 	$updated = $photo_data->photo->updated; 
 	$title = replace_tag_number_by_text($photo_data->photo->title,'#'); 
-	$caption = replace_tag_number_by_text($photo_data->photo->caption); 
+	$caption = replace_tag_number_by_text($photo_data->photo->caption,''); 
 	$photoUrl= $photo_data->photo->photoUrl; 
 	$url_photo_big = preg_replace('(\d+/\d+)',$width.'/'.$height,$photoUrl,1); 
 	preg_match_all('/#(\S*)/',$title,$extracted_tags_from_title); //extract tags form title
