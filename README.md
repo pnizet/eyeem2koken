@@ -34,6 +34,7 @@ Setup
 * You need to get a local copy of https://github.com/lsolesen/pel. There is 2 way to do it : 
 	* `cd eyeem2koken` `git submodule init` `git submodule update`
 	* Or download and unzip : https://github.com/lsolesen/pel/archive/master.zip  to eyeem2koken/pel
+	
 * Setup is done !
 
 
@@ -50,7 +51,7 @@ Using it
 
 Todo *(Wanna Help ?!)*
 ---------------------
-* Include GPS in the exif
+* ~~Include GPS in the exif~~
 * Improve setup.php for the koken part
 
 Disclaimer
