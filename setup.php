@@ -37,7 +37,7 @@ if (strcmp($EyeemClientID,'YOUR_EYEEM_CLIENT_ID')==0
 	|| strcmp($eyeem_username,'YOUR_EYEEM_USERNAME')==0 
 	|| strcmp($koken_url,'YOUR_KOKEN_SERVER_URL')==0) {
 	echo "<p>First of all, Modify your <ul><li>EyeemClientID</li> <li>EyeemClientSecret</li> <li>Your eyeem username (\$eyeem_username)</li> <li>and the url of your koken installation (\$koken_url)</li></ul> with a text editor in the config.php file</p>";
-	echo "<p>EyeemClientID and EyeemClientSecret can be found on <a href=\"https://www.eyeem.com/developers\" target="_blank">https://www.eyeem.com/developers</a> by registring an app</p>";
+	echo "<p>EyeemClientID and EyeemClientSecret can be found on <a href=\"https://www.eyeem.com/developers\" target=\"_blank\">https://www.eyeem.com/developers</a> by registring an app</p>";
 	exit;
 }
 

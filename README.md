@@ -27,9 +27,13 @@ Setup
 	* Click on the provided button to get yours
 	* Grant Acces
 	* Click on "Applications" (Left panel of your koken backend)
-	* Copy the token value
+	* Copy the token value corresponding to eyeem2koken
 	* Paste it on the line  `$koken_token = "YOUR_KOKEN_TOKEN"`;
 * Refresh setup.php
+
+* You need to get a local copy of https://github.com/lsolesen/pel. There is 2 way to do it : 
+	* `cd eyeem2koken` `git submodule init` `git submodule update`
+	* Or download and unzip : https://github.com/lsolesen/pel/archive/master.zip  to eyeem2koken/pel
 * Setup is done !
 
 

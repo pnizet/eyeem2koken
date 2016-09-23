@@ -249,4 +249,10 @@ function ft_nonce_is_valid( $nonce , $action = '' , $user='' ){
 	return false;
 }
 
+// This method generates the nonce timestamp
+function ft_nonce_generate_hash( $action='' , $user='' ){
+	$i = ceil( time() / ( FT_NONCE_DURATION / 2 ) );
+	return md5( $i . $action . $user . $action );
+}
+
 ?>
