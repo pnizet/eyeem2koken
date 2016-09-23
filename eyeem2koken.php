@@ -122,7 +122,7 @@ function eyeem2koken () {
 	echo $i->set(IPTC_HEADLINE,$title);
 	echo $i->set(IPTC_KEYWORDS,$tags);
 	$i->write();
-
+	addGpsInfo($file_name_with_full_path, $file_name_with_full_path, $caption, "", "", $longitude, $latitude, "", $updated);
 	///////////////////////////////////////////////////////////////////////////////////////////////
 	//Uploading the picture and datas to Koken
 	$service_url = $koken_api_url;
